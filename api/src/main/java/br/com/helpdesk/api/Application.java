@@ -1,13 +1,11 @@
-package br.com.helpdesk.userserviceapi;
+package br.com.helpdesk.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserServiceApiApplication {
-
+public class Application {
     public static void main(String[] args) {
-        SpringApplication.run(UserServiceApiApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
-
 }
