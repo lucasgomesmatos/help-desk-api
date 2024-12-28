@@ -1,10 +1,11 @@
 package br.com.helpdesk.api.controller.impl;
 
 import br.com.helpdesk.api.controller.UserController;
-import br.com.helpdesk.api.entity.User;
 import br.com.helpdesk.api.service.UserService;
+import br.com.helpdesk.commons.models.requests.CreateUserRequest;
 import br.com.helpdesk.commons.models.responses.UserResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,5 +18,13 @@ public class UserControllerImpl implements UserController {
     @Override
     public ResponseEntity<UserResponse> findById(String id) {
         return ResponseEntity.ok().body(userService.findById(id));
+    }
+
+    @Override
+    public ResponseEntity<Void> save(final CreateUserRequest createUserRequest) {
+
+        userService.save(createUserRequest);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
