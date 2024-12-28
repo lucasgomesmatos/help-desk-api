@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class UserControllerImpl implements UserController {
@@ -26,5 +28,10 @@ public class UserControllerImpl implements UserController {
         userService.save(createUserRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @Override
+    public ResponseEntity<List<UserResponse>> findAll() {
+        return ResponseEntity.ok().body(userService.findAll());
     }
 }
