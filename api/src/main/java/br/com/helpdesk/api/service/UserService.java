@@ -67,8 +67,8 @@ public class UserService {
 
     private User find(final String id) {
         return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Object not found"
-                        + id + " , Type: " + User.class.getSimpleName()
+                .orElseThrow(() -> new ResourceNotFoundException("Object not found "
+                        + id + ", Type: " + User.class.getSimpleName()
                 ));
     }
 }
