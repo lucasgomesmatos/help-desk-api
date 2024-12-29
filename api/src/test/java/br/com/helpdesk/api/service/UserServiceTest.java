@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -61,6 +62,21 @@ class UserServiceTest {
 
         verify(repository, times(1)).findById(anyString());
         verify(mapper, never()).fromEntity(any(User.class));
+    }
+
+    @Test
+    void whenCallFindAllThenReturnListOfUsers() {
+        when(repository.findAll()).thenReturn(List.of(new User(), new User()));
+        when(mapper.fromEntity(any(User.class))).thenReturn(mock(UserResponse.class));
+
+        final var response = service.findAll();
+
+        Assertions.assertNotNull(response);
+        Assertions.assertEquals(2, response.size());
+        Assertions.assertEquals(UserResponse.class, response.getFirst().getClass());
+
+        verify(repository, times(1)).findAll();
+        verify(mapper, times(2)).fromEntity(any(User.class));
     }
 
 }
