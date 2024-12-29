@@ -2,6 +2,7 @@ package br.com.helpdesk.api.controller;
 
 import br.com.helpdesk.commons.models.exceptions.StandardError;
 import br.com.helpdesk.commons.models.requests.CreateUserRequest;
+import br.com.helpdesk.commons.models.requests.UpdateUserRequest;
 import br.com.helpdesk.commons.models.responses.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -25,7 +26,8 @@ public interface UserController {
 
     @Operation(summary = "Find user by id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "User found"),
+            @ApiResponse(responseCode = "200", description = "User found",
+                    content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "404", description = "User not found",
                     content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = StandardError.class))),
             @ApiResponse(responseCode = "500", description = "Internal server error",
@@ -39,7 +41,8 @@ public interface UserController {
 
     @Operation(summary = "Save user")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "User created"),
+            @ApiResponse(responseCode = "201", description = "User created",
+                    content = @Content(mediaType = APPLICATION_JSON_VALUE)),
             @ApiResponse(responseCode = "400", description = "Bad request",
                     content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = StandardError.class))),
             @ApiResponse(responseCode = "500", description = "Internal server error",
@@ -58,5 +61,21 @@ public interface UserController {
     })
     @GetMapping
     ResponseEntity<List<UserResponse>> findAll();
+
+
+    @Operation(summary = "Update user")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User updated",
+                    content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = UserResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Bad request",
+                    content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = StandardError.class))),
+            @ApiResponse(responseCode = "404", description = "User not found",
+                    content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = StandardError.class))),
+            @ApiResponse(responseCode = "500", description = "Internal server error",
+                    content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = StandardError.class)))
+    })
+    @PutMapping("/{id}")
+    ResponseEntity<UserResponse> update(
+            @PathVariable(name = "id") final String id,
+            @Valid @RequestBody final UpdateUserRequest updateUserRequest);
 }
-git

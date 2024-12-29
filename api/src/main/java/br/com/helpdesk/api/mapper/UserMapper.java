@@ -2,9 +2,11 @@ package br.com.helpdesk.api.mapper;
 
 import br.com.helpdesk.api.entity.User;
 import br.com.helpdesk.commons.models.requests.CreateUserRequest;
+import br.com.helpdesk.commons.models.requests.UpdateUserRequest;
 import br.com.helpdesk.commons.models.responses.UserResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 
 @Mapper(
@@ -18,4 +20,7 @@ public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)
     User fromRequest(final CreateUserRequest createUserRequest);
+
+    @Mapping(target = "id", ignore = true)
+    User update(UpdateUserRequest updateUserRequest, @MappingTarget User entity);
 }
