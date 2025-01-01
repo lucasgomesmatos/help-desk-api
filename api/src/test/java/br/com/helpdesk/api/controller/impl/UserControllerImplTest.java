@@ -273,7 +273,6 @@ class UserControllerImplTest {
         ;
     }
 
-
     private static String toJson(Object object) throws JsonProcessingException {
         return new ObjectMapper().writeValueAsString(object);
     }
