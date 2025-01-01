@@ -10,7 +10,7 @@
     </parent>
     <groupId>br.com.helpdesk.api</groupId>
     <artifactId>auth-service-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>auth-service-api</name>
     <description>auth-service-api</description>
