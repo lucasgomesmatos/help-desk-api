@@ -31,9 +31,8 @@ public interface AuthController {
                     content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = StandardError.class)))
     })
     @PostMapping("/authenticate")
-    ResponseEntity<AuthenticateResponse> authenticate(@Valid @RequestBody final AuthenticateRequest request);
+    ResponseEntity<AuthenticateResponse> authenticate(@Valid @RequestBody final AuthenticateRequest request) throws Exception;
 
     @PostMapping("/refresh")
     ResponseEntity<AuthenticateResponse> refresh();
-
 }
