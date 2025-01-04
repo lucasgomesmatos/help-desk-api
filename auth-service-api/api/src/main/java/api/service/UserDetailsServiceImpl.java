@@ -31,4 +31,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                                 .map(role -> new SimpleGrantedAuthority(role.getDescription())).toList())
                 .build();
     }
+
 }

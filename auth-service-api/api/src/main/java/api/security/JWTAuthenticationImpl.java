@@ -1,5 +1,6 @@
-package api.security.dtos;
+package api.security;
 
+import api.security.dtos.UserDetailsDto;
 import api.utils.JWTUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -31,13 +32,13 @@ public class JWTAuthenticationImpl {
         }
     }
 
-    protected  AuthenticateResponse buildResponse(final UserDetailsDto detailsDto) {
+    protected AuthenticateResponse buildResponse(final UserDetailsDto detailsDto) {
 
         final var token = jwtUtils.generateToken(detailsDto);
 
         return AuthenticateResponse.builder()
-                .type("JWT")
-                .token("Bearer " + token)
+                .type("Bearer")
+                .token(token)
                 .build();
     }
 }

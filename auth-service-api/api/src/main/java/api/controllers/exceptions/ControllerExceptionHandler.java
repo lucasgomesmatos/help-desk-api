@@ -2,6 +2,8 @@ package api.controllers.exceptions;
 
 
 import jakarta.servlet.http.HttpServletRequest;
+import models.exceptions.RefreshTokenExpiredException;
+import models.exceptions.ResourceNotFoundException;
 import models.exceptions.StandardError;
 import models.exceptions.ValidationException;
 import org.springframework.http.HttpStatus;
@@ -42,6 +44,28 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<StandardError> handleBadCredentialsException(
             final BadCredentialsException exception, final HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(StandardError.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.UNAUTHORIZED.value())
+                .error(HttpStatus.UNAUTHORIZED.getReasonPhrase())
+                .message(exception.getMessage())
+                .path(request.getRequestURI())
+                .build());
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<StandardError> handleResourceNotFoundException(final ResourceNotFoundException exception, final HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(StandardError.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.NOT_FOUND.value())
+                .error(HttpStatus.NOT_FOUND.getReasonPhrase())
+                .message(exception.getMessage())
+                .path(request.getRequestURI())
+                .build());
+    }
+
+    @ExceptionHandler(RefreshTokenExpiredException.class)
+    public ResponseEntity<StandardError> handleRefreshTokenExpiredException(final RefreshTokenExpiredException exception, final HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(StandardError.builder()
                 .timestamp(LocalDateTime.now())
                 .status(HttpStatus.UNAUTHORIZED.value())

@@ -16,3 +16,4 @@ server:
 
 jwt.secret: "4/p3au71Lr/fY4JrhKpdv8GLyxirgB6QgaSGpW7b/l1urt1IzPJmHbwKUx1SLCpBvEDWLooymrDrT7K9YIFSvA=="
 jwt.expiration: 120000
+jwt.expiration-sec.refresh-token: 3600
