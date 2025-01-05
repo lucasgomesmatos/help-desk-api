@@ -12,7 +12,7 @@ springdoc:
     description: 'Compoent responsible for authentication and authorization created with Spring Boot'
     version: '1.0.0'
 server:
-  port: 8087
+  port: ${SERVER_PORT:8087}
 
 jwt.secret: "4/p3au71Lr/fY4JrhKpdv8GLyxirgB6QgaSGpW7b/l1urt1IzPJmHbwKUx1SLCpBvEDWLooymrDrT7K9YIFSvA=="
 jwt.expiration: 120000
