@@ -1,19 +1,7 @@
 spring:
   application:
     name: 'auth-service-api'
-  data:
-    mongodb:
-      uri: mongodb+srv://help-desk-user:help-desk-user@clusterhelpdesk.0ugbp.mongodb.net/helpdeskdb?retryWrites=true&w=majority&appName=ClusterHelpDesk
-      auto-index-creation: true
-
-springdoc:
-  open-api:
-    title: 'Auth Service API'
-    description: 'Compoent responsible for authentication and authorization created with Spring Boot'
-    version: '1.0.0'
+  config:
+    import: configserver:${CONFIG_SERVER_URI:http://localhost:8888}
 server:
   port: ${SERVER_PORT:8087}
-
-jwt.secret: "4/p3au71Lr/fY4JrhKpdv8GLyxirgB6QgaSGpW7b/l1urt1IzPJmHbwKUx1SLCpBvEDWLooymrDrT7K9YIFSvA=="
-jwt.expiration: 120000
-jwt.expiration-sec.refresh-token: 3600
