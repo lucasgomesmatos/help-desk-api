@@ -11,6 +11,7 @@
     <groupId>br.com.helpdesk</groupId>
     <artifactId>order-service-api</artifactId>
     <version>1.0.0</version>
+    <packaging>pom</packaging>
     <name>order-service-api</name>
     <description>order-service-api</description>
     <url/>
@@ -20,6 +21,9 @@
     <developers>
         <developer/>
     </developers>
+    <modules>
+        <module>api</module>
+    </modules>
     <scm>
         <connection/>
         <developerConnection/>
