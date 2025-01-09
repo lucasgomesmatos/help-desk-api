@@ -27,7 +27,7 @@ public class Order implements Serializable {
     private Long id;
 
     @Column(nullable = false, length = 45)
-    private String requestId;
+    private String RequesterId;
 
     @Column(nullable = false, length = 45)
     private String customerId;
@@ -46,4 +46,6 @@ public class Order implements Serializable {
     private LocalDateTime createdAt;
 
     private LocalDateTime closedAt;
+
+    // F063
 }
