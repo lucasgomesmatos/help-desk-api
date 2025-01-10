@@ -3,12 +3,6 @@ spring:
     name: 'order-service-api'
   config:
     import: configserver:${CONFIG_SERVER_URI}
-  jpa:
-    properties:
-      hibernate:
-        jdbc:
-          time_zone: America/Sao_Paulo
 server:
-  port: ${SERVER_PORT:8087}
-
+  port: ${SERVER_PORT:8100}
 
