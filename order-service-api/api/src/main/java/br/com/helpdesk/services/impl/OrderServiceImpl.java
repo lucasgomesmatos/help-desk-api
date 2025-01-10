@@ -39,8 +39,8 @@ public class OrderServiceImpl implements OrderService {
     public void save(CreateOrderRequest request) {
         final var requesterId = validateUser(request.requesterId());
         final var customerId = validateUser(request.customerId());
-
-        // F079
+        log.info("Requester: {}", requesterId);
+        log.info("Customer: {}", customerId);
 
         repository.save(
                 mapper.fromRequest(request)
@@ -49,6 +49,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderResponse update(final Long id, UpdateOrderRequest request) {
+        validateUsers(request);
+
         var entity = find(id);
         entity = mapper.fromRequest(entity, request);
 
@@ -57,6 +59,16 @@ public class OrderServiceImpl implements OrderService {
         }
 
         return mapper.fromEntity(repository.save(entity));
+    }
+
+    private void validateUsers(final UpdateOrderRequest request) {
+        if (request.requesterId() != null) {
+            validateUser(request.requesterId());
+        }
+
+        if (request.customerId() != null) {
+            validateUser(request.customerId());
+        }
     }
 
     @Override

@@ -12,10 +12,6 @@ import java.util.Map;
 @AllArgsConstructor
 public class GenericFeignException extends RuntimeException {
 
-    public GenericFeignException(String message) {
-        super(message);
-    }
-
     private Integer status;
     private Map error;
 
