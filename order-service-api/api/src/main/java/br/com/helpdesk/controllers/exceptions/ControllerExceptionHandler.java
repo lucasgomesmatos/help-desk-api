@@ -2,6 +2,7 @@ package br.com.helpdesk.controllers.exceptions;
 
 
 import jakarta.servlet.http.HttpServletRequest;
+import models.exceptions.GenericFeignException;
 import models.exceptions.ResourceNotFoundException;
 import models.exceptions.StandardError;
 import models.exceptions.ValidationException;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Map;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
@@ -60,6 +62,12 @@ public class ControllerExceptionHandler {
         }
 
         return ResponseEntity.badRequest().body(error);
+    }
+
+    @ExceptionHandler(GenericFeignException.class)
+    public ResponseEntity<Map> handleGenericFeignException(
+            final GenericFeignException exception) {
+        return ResponseEntity.status(exception.getStatus()).body(exception.getError());
     }
 
 

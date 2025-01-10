@@ -5,4 +5,7 @@ spring:
     import: configserver:${CONFIG_SERVER_URI}
 server:
   port: ${SERVER_PORT:8100}
+user:
+  service:
+    uri: ${USER_SERVICE_URI:http://localhost:8080/api/users}
 
