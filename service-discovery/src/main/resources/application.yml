@@ -1,14 +1,9 @@
 spring:
   application:
     name: 'service-discovery'
-  config:
-    import: configserver:${CONFIG_SERVER_URI}
-server:
-  port: ${SERVER_PORT:8761}
-user:
-  service:
-    uri: ${USER_SERVICE_URI:http://localhost:8080/api/users}
 eureka:
   client:
-    fetch-registry: false
     register-with-eureka: false
+    fetch-registry: false
+server:
+  port: ${PORT:8761}
