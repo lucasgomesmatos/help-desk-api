@@ -1,9 +1,4 @@
-FROM openjdk:21-jdk
-
-# Definindo variáveis de ambiente
-ENV CONFIG_SERVER_URI=https://github.com/lucasgomesmatos/config-server-backend
-ENV CONFIG_SERVER_USERNAME=lucasgomesmatos
-ENV CONFIG_SERVER_PASSWORD=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
+FROM openjdk:23-jdk
 
 ARG JAR_FILE=target/*.jar
 
