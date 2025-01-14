@@ -42,7 +42,6 @@ public class OrderServiceImpl implements OrderService {
     public void save(CreateOrderRequest request) {
         final var requester = validateUser(request.requesterId());
         final var customer = validateUser(request.customerId());
-
         var entity = repository.save(
                 mapper.fromRequest(request)
         );
