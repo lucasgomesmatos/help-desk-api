@@ -3,5 +3,35 @@ version: '3.8'
 services:
   service-discovery:
     image: lucasgomesmatos/helpdesk-service-discovery:latest
+    container_name: "service-discovery"
     ports:
       - "8761:8761"
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: "rabbitmq"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ~/.docker/volumes/rabbitmq/data:/var/lib/rabbitmq
+      - ~/.docker/volumes/rabbitmq/log:/var/log/rabbitmq
+    networks:
+      - helpdesk
+
+#  config-server:
+#    image: lucasgomesmatos/helpdesk-config-server:latest
+#    container_name: "config-server"
+#    environment:
+#      - CONFIG_SERVER_URI=
+#      - CONFIG_SERVER_USERNAME=
+#      - CONFIG_SERVER_PASSWORD=
+#      - PORT=8888
+#    ports:
+#      - "8888:8888"
+#    networks:
+#      - helpdesk
+
+
+networks:
+    helpdesk:
+        driver: bridge

@@ -1,7 +1,14 @@
 spring:
   application:
     name: 'order-service-api'
-  config:
-    import: configserver:${CONFIG_SERVER_URI}
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URI:http://localhost:8888}
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+    connection-timeout: ${RABBITMQ_CONNECTION_TIMEOUT:10000}
 server:
   port: ${SERVER_PORT:8100}
