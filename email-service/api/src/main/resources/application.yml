@@ -1,6 +1,14 @@
 spring:
   application:
     name: 'email-service-api'
+  main:
+    allow-bean-definition-overriding: true
 server:
   port: ${SERVER_PORT:8102}
 
+mail:
+  host: ${MAIL_HOST:smtp.gmail.com}
+  port: ${MAIL_PORT:587}
+  username: ${MAIL_USERNAME:lgomes.lg99@gmail.com}
+  password: ${MAIL_PASSWORD:weci fjrg ofru pjps}
+  protocol: ${MAIL_PROTOCOL:smtp}
